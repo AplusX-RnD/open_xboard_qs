@@ -9,11 +9,16 @@
 #   default  firmware/qmk_firmware   keymap default  (no VIA)
 #   srgb     firmware/SRGBmods_QMK   keymap srgb     (SignalRGB)
 #
-# Requires the qmk CLI (QMK MSYS on Windows: use scripts/build.cmd).
+# Requires the qmk CLI. On Windows it lives inside QMK MSYS; when this script
+# is started from another shell (Git Bash, VS Code terminal) it re-launches
+# itself inside QMK MSYS (see relaunch_in_qmk_msys in scripts/common.sh).
 
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# shellcheck source=scripts/common.sh
+. "$ROOT/scripts/common.sh"
+relaunch_in_qmk_msys "${BASH_SOURCE[0]}" "$@"
 KEYBOARD="aplusx_pulsar/xboard_qs"
 OUT_DIR="$ROOT/build"
 CLEAN=""

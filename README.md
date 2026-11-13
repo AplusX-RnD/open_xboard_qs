@@ -34,9 +34,11 @@ open_xboard_qs/
 
 * Git
 * The [QMK CLI](https://docs.qmk.fm/newbs_getting_started) with the ARM
-  toolchain. On Windows install [QMK MSYS](https://msys.qmk.fm/); the `.cmd`
-  wrappers run the scripts inside it (set `QMK_MSYS_DIR` if it is not in
-  `C:\Tools\QMK_MSYS`).
+  toolchain. On Windows install [QMK MSYS](https://msys.qmk.fm/). The scripts
+  can be started from any shell: `scripts\build.cmd` from cmd / PowerShell, or
+  `scripts/build.sh` from Git Bash or the VS Code terminal, which re-launches
+  itself inside QMK MSYS when `qmk` is not on the PATH. Set `QMK_MSYS_DIR` if
+  QMK MSYS is not installed in `C:\Tools\QMK_MSYS`.
 
 ## Quick start
 

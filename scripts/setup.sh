@@ -14,6 +14,12 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# Setup itself only needs git, but running it inside QMK MSYS keeps the
+# submodule checkouts consistent with the git that the build uses.
+# shellcheck source=scripts/common.sh
+. "$ROOT/scripts/common.sh"
+relaunch_in_qmk_msys "${BASH_SOURCE[0]}" "$@"
+
 KEYBOARD_DIR="$ROOT/keyboards/aplusx_pulsar"
 # Libraries the STM32 build needs; lufa supplies the USB HID class headers.
 NESTED_SUBMODULES="lib/chibios lib/chibios-contrib lib/printf lib/lufa"
