@@ -2,7 +2,7 @@
     "keyboard_name": "Pulsar XBOARD QS",
     "manufacturer": "Pulsar",
     "url": "https://pulsargg.kr/",
-    "maintainer": "AplusX-RnD",
+    "maintainer": "Erik Jung",
     "processor": "STM32F072",
     "bootloader": "stm32-dfu",
     "bootloader_instructions": "Turn on the power while pressing the U key and continue to press the U key for 5 seconds.",

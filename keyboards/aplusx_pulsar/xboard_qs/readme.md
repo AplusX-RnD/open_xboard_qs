@@ -5,7 +5,7 @@
 An 80% keyboard with three special keys, a rotary encoder, a built-in USB hub
 and a two-host (PC1 / PC2) switch.
 
-* Keyboard Maintainer: [AplusX-RnD](https://github.com/AplusX-RnD)
+* Keyboard Maintainer: Erik Jung ([AplusX-RnD](https://github.com/AplusX-RnD))
 * Hardware Supported: Pulsar XBOARD QS (STM32F072)
 * Hardware Availability: [Pulsar](https://pulsargg.kr/product/list.html?cate_no=24)
 

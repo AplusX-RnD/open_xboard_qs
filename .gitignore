@@ -1,6 +1,9 @@
 # Build outputs
 /build/
 
+# Local notes and helper files that are not part of the project
+/temp/
+
 # Editors
 /.vscode/
 *.swp
