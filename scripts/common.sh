@@ -1,5 +1,10 @@
 # Shared helpers for scripts/*.sh. Sourced, not executed.
 
+# The qmk CLI shipped with QMK MSYS 1.9 warns about a deprecated milc call on
+# every invocation (also from the qmk generate-* steps inside make). Silence
+# it here as well, for people who run the .sh scripts from a QMK MSYS shell.
+export PYTHONWARNINGS="${PYTHONWARNINGS:-ignore::UserWarning}"
+
 # On Windows the qmk CLI only exists inside QMK MSYS. If this script was
 # started from another shell (Git Bash, VS Code terminal, plain MSYS2) and
 # `qmk` is not on PATH, re-run it under QMK MSYS's bash and exit with its

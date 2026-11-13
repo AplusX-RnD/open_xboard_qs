@@ -9,4 +9,5 @@ if not exist "%QMK_MSYS_DIR%\usr\bin\bash.exe" (
 )
 set MSYSTEM=MINGW64
 set CHERE_INVOKING=1
-"%QMK_MSYS_DIR%\usr\bin\bash.exe" -l "%~dp0setup.sh" %*
+rem msys-run.sh loads the MSYS profile quietly (no welcome banner) and execs the script.
+"%QMK_MSYS_DIR%\usr\bin\bash.exe" --noprofile --norc "%~dp0msys-run.sh" "%~dp0setup.sh" %*
