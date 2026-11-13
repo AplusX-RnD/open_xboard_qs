@@ -41,6 +41,17 @@ fw_version() {
     echo "v${major}.${minor}${patch}"
 }
 
+# Short commit id of this repository, with "-dirty" when there are local edits,
+# so a .bin can always be traced back to the exact sources.
+git_rev() {
+    local rev
+    rev=$(git -C "$ROOT" rev-parse --short HEAD 2>/dev/null || echo "nogit")
+    if [ -n "$(git -C "$ROOT" status --porcelain --untracked-files=no 2>/dev/null)" ]; then
+        rev="${rev}-dirty"
+    fi
+    echo "$rev"
+}
+
 build_variant() {
     local variant="$1" tree keymap
     case "$variant" in
@@ -60,7 +71,7 @@ build_variant() {
     (cd "$tree_dir" && QMK_HOME="$tree_dir" qmk compile $CLEAN -kb "$KEYBOARD" -km "$keymap")
 
     local bin="$tree_dir/.build/aplusx_pulsar_xboard_qs_${keymap}.bin"
-    local out="$OUT_DIR/xboard_qs_$(fw_version)_${variant}_$(date +%Y%m%d).bin"
+    local out="$OUT_DIR/xboard_qs_$(fw_version)_${variant}_$(date +%Y%m%d)_$(git_rev).bin"
     mkdir -p "$OUT_DIR"
     cp "$bin" "$out"
     printf '   -> %s (%s bytes)\n' "${out#$ROOT/}" "$(wc -c < "$out" | tr -d ' ')"

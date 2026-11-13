@@ -24,3 +24,10 @@ kvm_host_t kvm_switch_current_host(void);
 
 /* Call from housekeeping_task_kb(); finishes the switch sequence. */
 void kvm_switch_task(void);
+
+/* Call from suspend_power_down_kb(), which QMK runs repeatedly while USB is
+ * suspended. Reads the PC1 / PC2 keys straight from the matrix so a host
+ * switch still works when the current host is absent or asleep: in that
+ * state normal key processing does not run, and QMK (0.34+) discards the key
+ * that woke the keyboard. */
+void kvm_switch_suspend_task(void);

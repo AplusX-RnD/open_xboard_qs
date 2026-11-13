@@ -31,8 +31,14 @@ void status_led_set_macro_recording(bool recording);
 /* Call from housekeeping_task_kb(). */
 void status_led_task(void);
 
-/* Call from rgb_matrix_indicators_kb(). */
+/* Call from rgb_matrix_indicators_kb(). Draws nothing while the firmware
+ * version display is active. */
 void status_led_render_indicators(void);
+
+/* Call from rgb_matrix_indicators_advanced_kb(). While the firmware version
+ * display is active, overwrites every LED in [led_min, led_max): white for
+ * the version digits, off for the rest. Returns false when it drew. */
+bool status_led_render_fw_version(uint8_t led_min, uint8_t led_max);
 
 /* Set one LED to white at the given brightness; does nothing when it is 0. */
 void status_led_set_white(uint8_t led_index, uint8_t brightness);

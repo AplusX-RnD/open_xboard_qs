@@ -106,6 +106,19 @@ bool rgb_matrix_indicators_kb(void) {
     return true;
 }
 
+bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
+    if (!rgb_matrix_indicators_advanced_user(led_min, led_max)) {
+        return false;
+    }
+    return status_led_render_fw_version(led_min, led_max);
+}
+
+/* Runs repeatedly while USB is suspended (host absent or asleep). */
+void suspend_power_down_kb(void) {
+    kvm_switch_suspend_task();
+    suspend_power_down_user();
+}
+
 #ifdef DYNAMIC_MACRO_ENABLE
 bool dynamic_macro_record_start_kb(int8_t direction) {
     status_led_set_macro_recording(true);

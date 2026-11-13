@@ -11,6 +11,13 @@
 #define KVM_PIN_OUTPUT_EN C2 /* hub host connection on/off */
 #define KVM_PIN_HOST_SEL  C0 /* hub host selection: low = PC1, high = PC2 */
 
+/* Matrix positions of the PC1 / PC2 keys (keyboard.json: [6,1] and [6,2]).
+ * They are read directly from the matrix while USB is suspended, because the
+ * selected host may be absent and the key press would otherwise be lost. */
+#define KVM_KEY_ROW     6
+#define KVM_PC1_KEY_COL 1
+#define KVM_PC2_KEY_COL 2
+
 /* WS2812 RGB matrix over SPI. The data pin is set in keyboard.json. */
 #define WS2812_SPI_DRIVER        SPID2
 #define WS2812_SPI_MOSI_PAL_MODE 0

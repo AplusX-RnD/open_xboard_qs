@@ -54,3 +54,18 @@ void kvm_switch_task(void) {
         switch_pending = false;
     }
 }
+
+void kvm_switch_suspend_task(void) {
+    /* The matrix was scanned by suspend_wakeup_condition() in the previous
+     * loop iteration, so the rows are current. */
+    matrix_row_t row = matrix_get_row(KVM_KEY_ROW);
+
+    if (row & ((matrix_row_t)1 << KVM_PC1_KEY_COL)) {
+        kvm_switch_select(KVM_HOST_PC1);
+    } else if (row & ((matrix_row_t)1 << KVM_PC2_KEY_COL)) {
+        kvm_switch_select(KVM_HOST_PC2);
+    }
+    /* housekeeping_task_kb() does not run while suspended, so finish the
+     * power-cycle here too. */
+    kvm_switch_task();
+}

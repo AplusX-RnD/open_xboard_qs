@@ -92,22 +92,43 @@ static void render_os_mode_and_host(uint8_t brightness) {
     }
 }
 
-static void render_fw_version(uint8_t brightness) {
-    rgb_matrix_set_color_all(0, 0, 0);
+static bool led_in_list(uint8_t led, const uint8_t *list, uint8_t count) {
+    for (uint8_t i = 0; i < count; i++) {
+        if (list[i] == led) {
+            return true;
+        }
+    }
+    return false;
+}
 
-    for (uint8_t i = 0; i < FW_VERSION_MAJOR; i++) {
-        rgb_matrix_set_color(fw_major_leds[i], brightness, brightness, brightness);
+static bool led_shows_fw_version(uint8_t led) {
+    return led_in_list(led, fw_major_leds, FW_VERSION_MAJOR) ||
+           led_in_list(led, fw_minor_leds, FW_VERSION_MINOR) ||
+           led_in_list(led, fw_patch_leds, FW_VERSION_PATCH) ||
+           led == fw_type_leds[FW_TYPE];
+}
+
+bool status_led_render_fw_version(uint8_t led_min, uint8_t led_max) {
+    if (!fw_version_display_enabled()) {
+        return true;
     }
-    for (uint8_t i = 0; i < FW_VERSION_MINOR; i++) {
-        rgb_matrix_set_color(fw_minor_leds[i], brightness, brightness, brightness);
+    /* Shown at the indicator brightness; never fully invisible. */
+    uint8_t brightness = status_led_brightness();
+    if (brightness == 0) {
+        brightness = MACRO_REC_MIN_BRIGHTNESS;
     }
-    for (uint8_t i = 0; i < FW_VERSION_PATCH; i++) {
-        rgb_matrix_set_color(fw_patch_leds[i], brightness, brightness, brightness);
+    for (uint8_t led = led_min; led < led_max; led++) {
+        uint8_t v = led_shows_fw_version(led) ? brightness : 0;
+        rgb_matrix_set_color(led, v, v, v);
     }
-    rgb_matrix_set_color(fw_type_leds[FW_TYPE], brightness, brightness, brightness);
+    return false;
 }
 
 void status_led_render_indicators(void) {
+    if (fw_version_display_enabled()) {
+        return; /* drawn by status_led_render_fw_version() */
+    }
+
     uint8_t brightness = status_led_brightness();
     led_t   host_leds  = host_keyboard_led_state();
 
@@ -143,8 +164,4 @@ void status_led_render_indicators(void) {
         quick_tap_render_indicators(brightness);
     }
 #endif
-
-    if (fw_version_display_enabled()) {
-        render_fw_version(brightness);
-    }
 }
