@@ -1,0 +1,28 @@
+diff --git a/tmk_core/protocol/chibios/chibios.c b/tmk_core/protocol/chibios/chibios.c
+index 19d8121e34..76e928c02f 100644
+--- a/tmk_core/protocol/chibios/chibios.c
++++ b/tmk_core/protocol/chibios/chibios.c
+@@ -184,17 +184,13 @@ void protocol_pre_task(void) {
+             /* Do this in the suspended state */
+             suspend_power_down(); // on AVR this deep sleeps for 15ms
+             /* Remote wakeup */
+-            if (suspend_wakeup_condition() && (USB_DRIVER.status & USB_GETSTATUS_REMOTE_WAKEUP_ENABLED)) {
++            /* XBOARD QS: the host sits behind the on-board USB hub / KVM switch and
++             * does not reliably advertise REMOTE_WAKEUP_ENABLED, so wake the host on
++             * any key press and restart the USB driver. Without this the keyboard can
++             * stay suspended after switching PC1 -> PC2 -> PC1. */
++            if (suspend_wakeup_condition()) {
+                 usbWakeupHost(&USB_DRIVER);
+-#    if USB_SUSPEND_WAKEUP_DELAY > 0
+-                // Some hubs, kvm switches, and monitors do
+-                // weird things, with USB device state bouncing
+-                // around wildly on wakeup, yielding race
+-                // conditions that can corrupt the keyboard state.
+-                //
+-                // Pause for a while to let things settle...
+-                wait_ms(USB_SUSPEND_WAKEUP_DELAY);
+-#    endif
++                restart_usb_driver(&USB_DRIVER);
+             }
+         }
+         /* Woken up */

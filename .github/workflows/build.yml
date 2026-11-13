@@ -1,0 +1,37 @@
+name: Build firmware
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: ${{ matrix.variant }}
+    runs-on: ubuntu-latest
+    container: ghcr.io/qmk/qmk_cli:latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [via, vial]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Trust the checkout inside the container
+        run: git config --global --add safe.directory '*'
+
+      - name: Prepare firmware trees (nested submodules, patches, keyboard link)
+        run: scripts/setup.sh
+
+      - name: Build
+        run: scripts/build.sh ${{ matrix.variant }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xboard_qs-${{ matrix.variant }}
+          path: build/*.bin
+          if-no-files-found: error

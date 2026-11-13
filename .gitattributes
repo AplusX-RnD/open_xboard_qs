@@ -1,0 +1,11 @@
+# Normalise to LF in the repository and on checkout; QMK's build (bash, make,
+# python) expects LF. Windows batch files must stay CRLF.
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+*.bin binary
+*.hex binary
+*.elf binary
+*.png binary
+*.jpg binary
