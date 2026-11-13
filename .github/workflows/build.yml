@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        variant: [via, vial]
+        variant: [via, vial, srgb]
     steps:
       - uses: actions/checkout@v4
         with:

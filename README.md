@@ -1,7 +1,7 @@
 # open_xboard_qs
 
 QMK firmware for the **Pulsar XBOARD QS** keyboard, with reproducible builds for
-the VIA and Vial variants (SignalRGB follows).
+the VIA, Vial and SignalRGB variants.
 
 The keyboard sources live once, in `keyboards/aplusx_pulsar/xboard_qs/`. The
 QMK and Vial trees are git submodules pinned to known-good commits, the small
@@ -11,7 +11,7 @@ keyboard folder into each tree before building.
 ```
 open_xboard_qs/
 ├── keyboards/aplusx_pulsar/xboard_qs/   keyboard definition and firmware modules
-│   ├── keymaps/default|via|vial/
+│   ├── keymaps/default|via|vial|srgb/
 │   ├── xboard_qs.c            QMK hook entry points
 │   ├── kvm_switch.c           PC1 / PC2 host switching (USB hub)
 │   ├── os_mode.c              Windows / macOS layer sets
@@ -22,6 +22,7 @@ open_xboard_qs/
 │   └── fw_version.h           version number shown on the LEDs
 ├── firmware/qmk_firmware/     submodule: qmk/qmk_firmware (VIA build)
 ├── firmware/vial-qmk/         submodule: vial-kb/vial-qmk (Vial build)
+├── firmware/SRGBmods_QMK/     submodule: SRGBmods/QMK (SignalRGB build)
 ├── patches/<tree>/            patches applied to each firmware tree
 ├── scripts/setup.sh|.cmd      init submodules, apply patches, link the keyboard
 ├── scripts/build.sh|.cmd      build one or more variants into build/
@@ -43,7 +44,7 @@ open_xboard_qs/
 git clone https://github.com/AplusX-RnD/open_xboard_qs.git
 cd open_xboard_qs
 scripts/setup.sh            # Windows: scripts\setup.cmd
-scripts/build.sh via vial   # Windows: scripts\build.cmd via vial
+scripts/build.sh all        # Windows: scripts\build.cmd all   (via + vial + srgb)
 ```
 
 The firmware files land in `build/` as
@@ -61,7 +62,7 @@ linking it (then re-run it after editing the sources).
 | `via`     | `firmware/qmk_firmware`  | `via`     | Release firmware                        |
 | `vial`    | `firmware/vial-qmk`      | `vial`    | Vial; fewer RGB effects, see keymap config.h |
 | `default` | `firmware/qmk_firmware`  | `default` | Same keymap without VIA                 |
-| `srgb`    | `firmware/SRGBmods_QMK`  | `via`     | SignalRGB, not yet set up (phase 2)     |
+| `srgb`    | `firmware/SRGBmods_QMK`  | `srgb`    | VIA + SignalRGB protocol (SRGBmods fork) |
 
 The firmware type shown by the version display is derived from the build, so
 `fw_version.h` needs no per-variant edits.
@@ -88,7 +89,8 @@ git add firmware/qmk_firmware && git commit -m "Update QMK to <new tag>"
 
 If a patch stops applying, edit the file in the submodule by hand, run
 `git -C firmware/qmk_firmware diff > patches/qmk_firmware/0001-...patch`, and
-test with `setup.sh` again. The same applies to `firmware/vial-qmk`.
+test with `setup.sh` again. The same applies to `firmware/vial-qmk` and
+`firmware/SRGBmods_QMK`.
 
 `.gitmodules` sets `ignore = dirty` for the submodules, so the applied patch and
 the keyboard link do not show up as changes in `git status`.

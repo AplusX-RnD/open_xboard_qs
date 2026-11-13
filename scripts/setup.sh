@@ -8,7 +8,8 @@
 #
 # Safe to run again: already-applied patches and existing links are skipped.
 #
-# Usage: scripts/setup.sh [--copy] [tree ...]      (default trees: qmk_firmware vial-qmk)
+# Usage: scripts/setup.sh [--copy] [tree ...]
+#        (default trees: qmk_firmware vial-qmk SRGBmods_QMK)
 
 set -euo pipefail
 
@@ -26,7 +27,7 @@ for arg in "$@"; do
     esac
 done
 if [ ${#TREES[@]} -eq 0 ]; then
-    TREES=(qmk_firmware vial-qmk)
+    TREES=(qmk_firmware vial-qmk SRGBmods_QMK)
 fi
 
 is_windows() {

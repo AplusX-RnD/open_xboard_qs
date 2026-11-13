@@ -6,3 +6,7 @@
 	path = firmware/vial-qmk
 	url = https://github.com/vial-kb/vial-qmk.git
 	ignore = dirty
+[submodule "firmware/SRGBmods_QMK"]
+	path = firmware/SRGBmods_QMK
+	url = https://github.com/SRGBmods/QMK.git
+	ignore = dirty

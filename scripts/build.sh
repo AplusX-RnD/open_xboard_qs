@@ -7,7 +7,7 @@
 #   via      firmware/qmk_firmware   keymap via      (VIA)
 #   vial     firmware/vial-qmk       keymap vial     (Vial)
 #   default  firmware/qmk_firmware   keymap default  (no VIA)
-#   srgb     firmware/SRGBmods_QMK   keymap via      (SignalRGB, phase 2)
+#   srgb     firmware/SRGBmods_QMK   keymap srgb     (SignalRGB)
 #
 # Requires the qmk CLI (QMK MSYS on Windows: use scripts/build.cmd).
 
@@ -22,7 +22,7 @@ VARIANTS=()
 for arg in "$@"; do
     case "$arg" in
         --clean) CLEAN="-c" ;;
-        all) VARIANTS+=(via vial) ;;
+        all) VARIANTS+=(via vial srgb) ;;
         via|vial|default|srgb) VARIANTS+=("$arg") ;;
         *) echo "unknown variant: $arg" >&2; exit 2 ;;
     esac
@@ -47,7 +47,7 @@ build_variant() {
         via)     tree=qmk_firmware; keymap=via ;;
         vial)    tree=vial-qmk;     keymap=vial ;;
         default) tree=qmk_firmware; keymap=default ;;
-        srgb)    tree=SRGBmods_QMK; keymap=via ;;
+        srgb)    tree=SRGBmods_QMK; keymap=srgb ;;
     esac
     local tree_dir="$ROOT/firmware/$tree"
 
