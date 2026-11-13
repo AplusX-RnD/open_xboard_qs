@@ -11,6 +11,16 @@
 #define DYNAMIC_KEYMAP_MACRO_COUNT 8
 #define DYNAMIC_MACRO_SIZE 64
 
+/* The STM32F072 has 16 KB of RAM and the Vial build uses almost all of it.
+ * Tap dance and combo keep the 32 slots the v1.23 firmware shipped with; key
+ * override is halved and the newer Alt Repeat Key table capped at 8 so that
+ * about 500 bytes of heap remain (v1.23 shipped with 264). Check the heap
+ * headroom (__heap_base__ .. __heap_end__ in the ELF) after changing these. */
+#define VIAL_TAP_DANCE_ENTRIES 32
+#define VIAL_COMBO_ENTRIES 32
+#define VIAL_KEY_OVERRIDE_ENTRIES 16
+#define VIAL_ALT_REPEAT_KEY_ENTRIES 8
+
 /* The shipped Vial firmware (v1.23) leaves out these RGB effects. Remove an
  * #undef to get the effect back. */
 #undef ENABLE_RGB_MATRIX_DUAL_BEACON

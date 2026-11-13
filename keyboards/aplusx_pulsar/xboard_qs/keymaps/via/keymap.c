@@ -23,13 +23,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                    KC_RALT, MO(WIN_FN), KC_APP, KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT),
 
     [WIN_FN] = LAYOUT(
-                                                                                                                   XQ_PC1,  XQ_PC2,  RGB_MOD,
+                                                                                                                   XQ_PC1,  XQ_PC2,  RM_NEXT,
         XQ_FACTORY_RESET, KC_BRID, KC_BRIU, XQ_WIN_TASK_VIEW, KC_WSCH, XQ_WIN_DICTATION, KC_MSEL, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, XQ_OS_TOGGLE, KC_CALC, KC_WHOM, XQ_WIN_LOCK,
-        DM_RSTP, DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, _______, _______, _______, _______, _______, _______, NK_OFF,  NK_ON,   RGB_TOG,      RGB_SAI, RGB_HUI, RGB_MOD,
-        _______, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, _______, _______, _______, _______, _______, _______, _______, _______, XQ_FW_VERSION, RGB_SAD, RGB_HUD, RGB_RMOD,
-        _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, _______, _______, _______, _______, _______, _______, _______,          _______,
-        XQ_QUICK_TAP,     KC_BTN4, KC_BTN3, KC_BTN5, _______, XQ_STATUS_LED, _______, _______, _______, _______, _______,    _______,               RGB_VAI,
-        _______, GU_TOGG, _______,                   _______,                   _______, _______, _______, _______,          RGB_SPD, RGB_VAD, RGB_SPI),
+        DM_RSTP, DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, _______, _______, _______, _______, _______, _______, NK_OFF,  NK_ON,   RM_TOGG,      RM_SATU, RM_HUEU, RM_NEXT,
+        _______, MS_BTN1, MS_UP,   MS_BTN2, MS_WHLU, _______, _______, _______, _______, _______, _______, _______, _______, XQ_FW_VERSION, RM_SATD, RM_HUED, RM_PREV,
+        _______, MS_LEFT, MS_DOWN, MS_RGHT, MS_WHLD, _______, _______, _______, _______, _______, _______, _______,          _______,
+        XQ_QUICK_TAP,     MS_BTN4, MS_BTN3, MS_BTN5, _______, XQ_STATUS_LED, _______, _______, _______, _______, _______,    _______,               RM_VALU,
+        _______, GU_TOGG, _______,                   _______,                   _______, _______, _______, _______,          RM_SPDD, RM_VALD, RM_SPDU),
 
     [MAC_BASE] = LAYOUT(
                                                                                                                    XQ_PC1,  XQ_PC2,  KC_MUTE,
@@ -41,21 +41,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_LALT, KC_LGUI,                   KC_SPC,                    KC_RGUI, MO(MAC_FN), KC_RALT, KC_RCTL,       KC_LEFT, KC_DOWN, KC_RGHT),
 
     [MAC_FN] = LAYOUT(
-                                                                                                                   XQ_PC1,  XQ_PC2,  RGB_MOD,
+                                                                                                                   XQ_PC1,  XQ_PC2,  RM_NEXT,
         XQ_FACTORY_RESET, KC_F1, KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  XQ_OS_TOGGLE, KC_F13,  KC_F14,  KC_F15,
-        DM_RSTP, DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, _______, _______, _______, _______, _______, _______, NK_OFF,  NK_ON,   RGB_TOG,      RGB_SAI, RGB_HUI, RGB_MOD,
-        _______, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, _______, _______, _______, _______, _______, _______, _______, _______, XQ_FW_VERSION, RGB_SAD, RGB_HUD, RGB_RMOD,
-        _______, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, _______, _______, _______, _______, _______, _______, _______,          _______,
-        XQ_QUICK_TAP,     KC_BTN4, KC_BTN3, KC_BTN5, _______, XQ_STATUS_LED, _______, _______, _______, _______, _______,    _______,               RGB_VAI,
-        _______, _______, _______,                   _______,                   _______, _______, _______, _______,          RGB_SPD, RGB_VAD, RGB_SPI),
+        DM_RSTP, DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, _______, _______, _______, _______, _______, _______, NK_OFF,  NK_ON,   RM_TOGG,      RM_SATU, RM_HUEU, RM_NEXT,
+        _______, MS_BTN1, MS_UP,   MS_BTN2, MS_WHLU, _______, _______, _______, _______, _______, _______, _______, _______, XQ_FW_VERSION, RM_SATD, RM_HUED, RM_PREV,
+        _______, MS_LEFT, MS_DOWN, MS_RGHT, MS_WHLD, _______, _______, _______, _______, _______, _______, _______,          _______,
+        XQ_QUICK_TAP,     MS_BTN4, MS_BTN3, MS_BTN5, _______, XQ_STATUS_LED, _______, _______, _______, _______, _______,    _______,               RM_VALU,
+        _______, _______, _______,                   _______,                   _______, _______, _______, _______,          RM_SPDD, RM_VALD, RM_SPDU),
 };
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [WIN_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [WIN_FN]   = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
+    [WIN_FN]   = {ENCODER_CCW_CW(RM_VALD, RM_VALU)},
     [MAC_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [MAC_FN]   = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
+    [MAC_FN]   = {ENCODER_CCW_CW(RM_VALD, RM_VALU)},
 };
 #endif
 // clang-format on

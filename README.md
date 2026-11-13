@@ -79,13 +79,18 @@ The firmware type shown by the version display is derived from the build, so
 ## Updating QMK or Vial
 
 ```sh
-cd firmware/qmk_firmware
-git checkout <new tag>
-cd ../..
+git -C firmware/qmk_firmware checkout -- .        # drop the applied patch first
+git -C firmware/qmk_firmware fetch --tags
+git -C firmware/qmk_firmware checkout <new tag>
 scripts/setup.sh              # re-applies the patch; fails loudly if it no longer fits
-scripts/build.sh via vial
+scripts/build.sh all
 git add firmware/qmk_firmware && git commit -m "Update QMK to <new tag>"
 ```
+
+Things that have needed attention on past upgrades: legacy keycode names
+(`RGB_*` became `RM_*`, `KC_MS_*`/`KC_BTN*` became `MS_*` in QMK 0.34) and RAM
+on the 16 KB STM32F072 (Vial table sizes are capped in
+`keymaps/vial/config.h`).
 
 If a patch stops applying, edit the file in the submodule by hand, run
 `git -C firmware/qmk_firmware diff > patches/qmk_firmware/0001-...patch`, and
