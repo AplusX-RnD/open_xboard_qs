@@ -7,7 +7,7 @@ and a two-host (PC1 / PC2) switch.
 
 * Keyboard Maintainer: Erik Jung ([AplusX-RnD](https://github.com/AplusX-RnD))
 * Hardware Supported: Pulsar XBOARD QS (STM32F072)
-* Hardware Availability: [Pulsar](https://pulsargg.kr/product/list.html?cate_no=24)
+* Hardware Availability: [Pulsar](https://www.pulsar.gg/collections/xboard-series/products/xboard-qs)
 
 ## Building
 
