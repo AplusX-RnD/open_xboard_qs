@@ -1,5 +1,8 @@
 # open_xboard_qs
 
+> **Notice.** This source code is published as is, without support and
+> without warranty. See [Notice](#notice) below before building or flashing.
+
 QMK firmware for the **Pulsar XBOARD QS** keyboard, with reproducible builds for
 the VIA, Vial and SignalRGB variants.
 
@@ -109,6 +112,32 @@ ChibiOS USB suspend handling: the host sits behind the on-board hub / KVM switch
 and does not reliably advertise remote wakeup, so the keyboard wakes the host on
 any key press and restarts the USB driver. Without it the keyboard can stay
 asleep after switching PC1 → PC2 → PC1.
+
+## Notice
+
+**No support.** This repository is published for reference. AplusX Inc. and
+Pulsar do not provide support for it: questions, bug reports and feature
+requests about this source code will not be answered, and pull requests may
+not be reviewed or merged. Product support covers only the firmware shipped
+with the keyboard or published on the official Pulsar support page.
+
+**No warranty, no liability.** This source code is licensed under the GNU
+General Public License, version 2 or later, and is provided WITHOUT ANY
+WARRANTY (see sections 11 and 12 of `LICENSE`). To the maximum extent
+permitted by applicable law, AplusX Inc. and Pulsar are not liable for any
+damage or loss arising from the use of this source code or of firmware built
+from it, including a keyboard that no longer works, loss of settings or data,
+and damage to connected equipment.
+
+**Use at your own risk.** Building, modifying and flashing firmware is done
+entirely at your own risk. Firmware built from this repository is not covered
+by the product warranty. A keyboard running firmware other than the official
+release may be refused for warranty service, or restoring the official
+firmware may be charged, as permitted by the law of your country.
+
+**Trademarks.** "Pulsar" and "XBOARD" are trademarks of AplusX Inc. This
+license does not grant permission to use them. Firmware built from this
+repository must not be distributed or described as official Pulsar firmware.
 
 ## License
 
