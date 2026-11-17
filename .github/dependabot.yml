@@ -1,0 +1,8 @@
+# Keep the pinned GitHub Actions in .github/workflows up to date. The firmware
+# trees are git submodules pinned on purpose and are not managed here.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

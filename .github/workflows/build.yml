@@ -7,17 +7,24 @@ on:
   pull_request:
   workflow_dispatch:
 
+# The workflow only reads the repository; artifacts are uploaded with the
+# default token, which needs no further scope.
+permissions:
+  contents: read
+
 jobs:
   build:
     name: ${{ matrix.variant }}
     runs-on: ubuntu-latest
-    container: ghcr.io/qmk/qmk_cli:latest
+    # Pinned by digest so every CI build uses the same toolchain. Update the
+    # tag and digest together (docker buildx imagetools inspect ghcr.io/qmk/qmk_cli:<tag>).
+    container: ghcr.io/qmk/qmk_cli:1.2.0@sha256:b7d7fa8fb4432b569931de5ad59098cb788f440ed61a62c5126746b71aee0f4a
     strategy:
       fail-fast: false
       matrix:
         variant: [via, vial, srgb]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           submodules: true
 
@@ -30,7 +37,7 @@ jobs:
       - name: Build
         run: scripts/build.sh ${{ matrix.variant }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: xboard_qs-${{ matrix.variant }}
           path: build/*.bin
