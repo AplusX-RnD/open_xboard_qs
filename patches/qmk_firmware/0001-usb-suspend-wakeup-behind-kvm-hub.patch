@@ -1,17 +1,3 @@
-diff --git a/lib/chibios b/lib/chibios
-index 6170ddf92d..8bd61b8043 160000
---- a/lib/chibios
-+++ b/lib/chibios
-@@ -1 +1 @@
--Subproject commit 6170ddf92d55be54c89b708d1882eea229edeb2c
-+Subproject commit 8bd61b804303f1614d574546c2dd735eeabb09f5
-diff --git a/lib/chibios-contrib b/lib/chibios-contrib
-index 5a9ad82b6b..3ac181e4ca 160000
---- a/lib/chibios-contrib
-+++ b/lib/chibios-contrib
-@@ -1 +1 @@
--Subproject commit 5a9ad82b6ba4f649cdb800e8c2bbc9be2d3ce767
-+Subproject commit 3ac181e4ca5cafddaf8b472baa1d09c2b24c77b6
 diff --git a/tmk_core/protocol/chibios/chibios.c b/tmk_core/protocol/chibios/chibios.c
 index b8cded99fc..67b9f142b3 100644
 --- a/tmk_core/protocol/chibios/chibios.c
