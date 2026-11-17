@@ -1,7 +1,7 @@
 {
     "keyboard_name": "Pulsar XBOARD QS",
     "manufacturer": "Pulsar",
-    "url": "https://pulsargg.kr/",
+    "url": "https://www.pulsar.gg/",
     "maintainer": "Erik Jung",
     "processor": "STM32F072",
     "bootloader": "stm32-dfu",
